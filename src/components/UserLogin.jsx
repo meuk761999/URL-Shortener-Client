@@ -26,7 +26,7 @@ export const UserLogin = () => {
     try {
       if(regexPassword.test(userData?.userPassword))
      { 
-       let response = await axios.post(`${DOMAIN_NAME}/api/v1/modules/users/login`,userData);
+       let response = await axios.post(`${DOMAIN_NAME}api/v1/modules/users/login`,userData);
        console.log(response.data.token)
        if(response.status==200)
        {

@@ -40,7 +40,7 @@ export const UserRegister = () => {
     try {
       if(errors.reUserPassword==="Password Match" && errors.userPassword==="Password Ok")
         {
-          let response = await axios.post(`${DOMAIN_NAME}/api/v1/modules/users/register`,userData);
+          let response = await axios.post(`${DOMAIN_NAME}api/v1/modules/users/register`,userData);
           console.log(response);
         }
     } catch (err) {

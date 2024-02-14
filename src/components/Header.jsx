@@ -1,8 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowDropDown } from '../../public/icons/Icons';
-import {DOMAIN_NAME,JWT_TOKEN} from '../../config/index';
+import {JWT_TOKEN} from '@@@/config/index';
 import { useRouter } from 'next/router';
 
 
