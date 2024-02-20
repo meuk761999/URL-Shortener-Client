@@ -5,7 +5,6 @@ import {JWT_TOKEN} from '@@@/config/index';
 import { useRouter } from 'next/router';
 
 
-
 const Header = () => {
   const router = useRouter();
   const [logStatus,setLogStatus]=useState(false);
@@ -40,16 +39,16 @@ const Header = () => {
             <div className="flex items-center">
               <ul className="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
                 <li>
-                  <Link href="#" className="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</Link>
+                  <Link href="/login/dashboard" className={`${router.pathname==="/login/dashboard"?"font-extrabold underline":""} text-gray-900 dark:text-white color hover:underline`} aria-current="page">Dashboard</Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-900 dark:text-white hover:underline">Company</Link>
+                  <Link href="/login/manageurls" className={`${router.pathname==="/login/manageurls"?"font-extrabold underline":""} text-gray-900 dark:text-white color hover:underline`}>Manage URLs</Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-900 dark:text-white hover:underline">Team</Link>
+                  <Link href="/" className={`${router.pathname==="/"?"font-extrabold underline":""} text-gray-900 dark:text-white color hover:underline`}>Analytics</Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-900 dark:text-white hover:underline">Features</Link>
+                  <Link href="#" className={`${router.pathname==="/"?"font-extrabold underline":""} text-gray-900 dark:text-white color hover:underline`}>Terms & Condtions</Link>
                 </li>
               </ul>
             </div>

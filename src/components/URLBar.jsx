@@ -1,20 +1,17 @@
 import React from 'react';
 import Image from "next/image";
 import {WWWIcon} from  '../../public/icons/Icons'
-import {setShortURL,setOriginalURL,getShortUrlService} from '@/redux/features/getURLSlice'
+import {setOriginalURL,getShortUrlService} from '@/redux/features/getURLSlice'
 import { useDispatch,useSelector } from 'react-redux';
 import { useState } from 'react';
-import { Validator } from 'react';
-import axios from 'axios';
-import { DOMAIN_NAME,JWT_TOKEN } from '../../config';
-import { atRule } from 'postcss';
+
 export const URLBar = () => {
   const [errors,setErrors]=useState({});
   const dispatch = useDispatch();
   const originalUrl=useSelector((state)=>state?.urlReducer?.originalURL);
   const handleURLInput =(e)=>{
     try {
-      dispatch(setOriginalURL (e.target.value));
+      dispatch(setOriginalURL(e.target.value));
       const url =  new URL(originalUrl);
       setErrors((_)=>({..._,originalURLError:""}));
     } catch (err) {
@@ -29,8 +26,6 @@ export const URLBar = () => {
     dispatch(getShortUrlService());      
 }
 } catch (err) {
-      // (err.response.status===409)
-      // dispatch(setShortURL(err?.response?.data?.shortUrl));
     }
   }
   return (

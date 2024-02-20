@@ -19,7 +19,7 @@ export default function Dashboard() {
       useEffect(()=>{
 
         if(!Boolean(localStorage.getItem(JWT_TOKEN)))
-        router.push("login/");
+        router.push("/login");
       },[]) 
   return (
     <>

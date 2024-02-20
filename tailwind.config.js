@@ -48,5 +48,16 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [function({addUtilities}){
+    const newUtilities = {
+      ".no-scroller::-webkit-scrollbar":{
+        display:"none"
+      },
+      ".no-scroller":{
+        "-ms-overflow-style":"none",
+        "scrollbar-width":"none"
+      }
+    }
+    addUtilities(newUtilities)
+  }],
 }

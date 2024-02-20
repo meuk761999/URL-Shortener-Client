@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 import { URLBar } from '@/components/URLBar';
 import { UserRegister } from '@/components/UserRegister';
-
 export default function Home() {
   return (
     <>
