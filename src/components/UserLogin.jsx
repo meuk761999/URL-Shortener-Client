@@ -1,53 +1,65 @@
 import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
-import {DOMAIN_NAME,JWT_TOKEN} from '../../config/index';
+import {useDispatch,useSelector} from 'react-redux';
+import {setUserData,userLoginService} from '@/redux/features/userSlice';
+import {DOMAIN_NAME,JWT_TOKEN} from '@@@/config/index';
 import { useRouter } from 'next/router';
 
 export const UserLogin = () => {
   const router = useRouter();
-  const [userData,setUserData]=useState({});
+  const userData=useSelector((state)=>state?.userReducer?.loginData);
+  // const statusCode=useSelector((state)=>state?.urlReducer?.statusCode);
+  const dispatch = useDispatch();
+
   const [errors,setErrors]=useState({});
   const regexPassword= /^([a-zA-Z0-9@*#]{8,15})$/;
   const fieldNames={ 
     userEmail: "userEmail" ,
     userPassword:"userPassword",
-
   }
   const handleChange=(e)=>{
-  setUserData((_) => ({ ..._, [e.target.name]: e.target.value })); 
+  dispatch(setUserData({[e.target.name]: e.target.value}));
   if(fieldNames.userPassword===e.target.name)
   setErrors((_)=>({..._,[fieldNames.userPassword]:""}));
   }
 
 
+//   const handleSubmit=async (e)=>{
+//     e.preventDefault();
+//     try {
+//       if(regexPassword.test(userData?.userPassword))
+//      { 
+//        let response = await axios.post(`${DOMAIN_NAME}api/v1/modules/users/login`,userData);
+//        console.log(response.data.token)
+//        if(response.status==200)
+//        {
+//         localStorage.setItem(JWT_TOKEN,response.data.token);
+//         router.push("login/dashboard");
+//       };
+//       }
+//     else
+//           setErrors((_)=>({..._,resError:"Password Does Not Match"}));
+        
+//     } catch (err) {
+//       if(err?.response?.status==401)
+//       setErrors((_)=>({..._,resError:"Password does not match"}));
+//     else if(err?.response?.status==404)
+//     setErrors((_)=>({..._,resError:"User not found ,please Register"}));
+//   else if(err?.response?.status==400)
+//   setErrors((_)=>({..._,resError:"Email or Password Invalid"}));
+// else
+// setErrors((_)=>({..._,resError:"Something went wrong ,Please try again later"}));
+// setErrors((_)=>({..._,resError:JSON.stringify(err)}));
+//     }
+   
+//   }
+
+
   const handleSubmit=async (e)=>{
     e.preventDefault();
-    try {
-      if(regexPassword.test(userData?.userPassword))
-     { 
-       let response = await axios.post(`${DOMAIN_NAME}api/v1/modules/users/login`,userData);
-       console.log(response.data.token)
-       if(response.status==200)
-       {
-        localStorage.setItem(JWT_TOKEN,response.data.token);
-        router.push("login/dashboard");
-      };
-      }
-    else
-          setErrors((_)=>({..._,resError:"Password Does Not Match"}));
-        
-    } catch (err) {
-      if(err.response.status==401)
-      setErrors((_)=>({..._,resError:"Password does not match"}));
-      else if(err.response.status==404)
-      setErrors((_)=>({..._,resError:"User not found ,please Register"}));
-      else if(err.response.status==400)
-      setErrors((_)=>({..._,resError:"Email or Password Invalid"}));
-     else
-     setErrors((_)=>({..._,resError:"Something went wrong ,Please try again later"}));
-    }
-   
+    dispatch(userLoginService());
+
   }
   return (
 <form className='w-full grid justify-center sm:w-1/2' onSubmit={handleSubmit}>

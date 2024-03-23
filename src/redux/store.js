@@ -1,7 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
-import urlReducer from './features/getURLSlice';
+import urlReducer from '@/redux/features/getURLSlice';
+import userReducer from '@/redux/features/userSlice';
 export const store = configureStore({
     reducer:{
-        urlReducer
+        urlReducer,
+        userReducer
     }
 })

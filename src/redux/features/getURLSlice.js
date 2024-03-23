@@ -1,5 +1,5 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
-import { DOMAIN_NAME,JWT_TOKEN } from '../../../config/index';
+import { DOMAIN_NAME,JWT_TOKEN } from '@@@/config/index';
 import axios from 'axios';
 const initialState ={
     originalURL:"https://",
